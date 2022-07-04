@@ -12,9 +12,9 @@ function App() {
     ])
 
     //const removeTask = (id:number)=> {tasks = tasks.filter((task)=> task.id !==id)}
-    
+
     const removeTask = (id:number)=> { // непонятно. нужно понять
-        let filteredTasks = tasks.filter(task => task.id !== task.id)
+        let filteredTasks = tasks.filter(task => task.id !== id)
         setTasks(filteredTasks)
     }
     
