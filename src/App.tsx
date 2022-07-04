@@ -2,6 +2,7 @@ import { log } from 'console';
 import React, { useState } from 'react';
 import './App.css';
 import Todolist from './Todolist';
+export type FilterValuesType = 'all' | 'active' | 'completed'
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
         setTasks(filteredTasks)
     }
 
-    let [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all')
+    let [filter, setFilter] = useState<FilterValuesType>('all')
     let tasksForTodolist = tasks // здесь храним отфильтрованные таски
     if(filter === 'active') {
         tasksForTodolist = tasks.filter(task => task.isDone === false)
@@ -27,7 +28,7 @@ function App() {
         tasksForTodolist = tasks.filter(task=> task.isDone === true)
     }
 
-    const changeFilter = (value: 'all' | 'active' | 'completed')=> {
+    const changeFilter = (value: FilterValuesType)=> {
         setFilter(value)
     }
     
