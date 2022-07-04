@@ -4,6 +4,7 @@ type PropsType = {
     title: string
     tasks: Array<TaskType>
     removeTask:(id:number)=>void
+    changeFilter:(value: 'all' | 'active' | 'completed')=> void
 }
 
 type TaskType = {
@@ -43,9 +44,9 @@ const Todolist = (props: PropsType) => {
                 </li> */}
             </ul>
             <div>
-                <button>All</button>
-                <button>Active</button>
-                <button>Completed</button>
+                <button onClick={()=>{props.changeFilter('all')}}>All</button>
+                <button onClick={()=>{props.changeFilter('active')}}>Active</button>
+                <button onClick={()=>{props.changeFilter('completed')}}>Completed</button>
             </div>
         </div>
     )
