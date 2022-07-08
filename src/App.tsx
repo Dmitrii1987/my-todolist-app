@@ -17,7 +17,7 @@ function App() {
 
     const addTask = () => {
         let task = {id:v1(), title: 'New task', isDone: false}
-        let newTasks = [task, ...tasks]
+        let newTasks = [task, ...tasks] // нужно, чтобы объяснили
         setTasks(newTasks)
     }
 
@@ -45,6 +45,7 @@ function App() {
         <div className="App">
             <Todolist title='What to learn'
             tasks={tasksForTodolist}
+            addTask={addTask}
             removeTask={removeTask}
             changeFilter={changeFilter} />
         </div>
