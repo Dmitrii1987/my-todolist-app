@@ -1,5 +1,5 @@
-import { log } from 'console';
 import React, { useState } from 'react';
+import { v1 } from 'uuid';
 import './App.css';
 import Todolist from './Todolist';
 
@@ -15,9 +15,15 @@ function App() {
         { id: v1(), title: "ReactJS", isDone: false }
     ])
 
+    const addTask = () => {
+        let task = {id:v1(), title: 'New task', isDone: false}
+        let newTasks = [task, ...tasks]
+        setTasks(newTasks)
+    }
+
     //const removeTask = (id:number)=> {tasks = tasks.filter((task)=> task.id !==id)}
 
-    const removeTask = (id:number)=> { // непонятно. нужно понять
+    const removeTask = (id:string)=> { // непонятно. нужно понять
         let filteredTasks = tasks.filter(task => task.id !== id)
         setTasks(filteredTasks)
     }
