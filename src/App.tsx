@@ -2,14 +2,17 @@ import { log } from 'console';
 import React, { useState } from 'react';
 import './App.css';
 import Todolist from './Todolist';
+
+
+
 export type FilterValuesType = 'all' | 'active' | 'completed'
 
 function App() {
 
     let [tasks,setTasks] = useState( [
-        { id: 1, title: "HTML&CSS", isDone: true },
-        { id: 2, title: "JS", isDone: true },
-        { id: 3, title: "ReactJS", isDone: false }
+        { id: v1(), title: "HTML&CSS", isDone: true },
+        { id: v1(), title: "JS", isDone: true },
+        { id: v1(), title: "ReactJS", isDone: false }
     ])
 
     //const removeTask = (id:number)=> {tasks = tasks.filter((task)=> task.id !==id)}
