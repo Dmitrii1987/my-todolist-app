@@ -21,6 +21,14 @@ function App() {
         setTasks(newTasks)
     }
 
+    const changeTaskStatus=(id:string,isDone:boolean)=> {  // непонятно
+        let task=tasks.find(t=>t.id===id)
+        if (task) {
+            task.isDone = isDone;
+            setTasks([...tasks])
+        }
+    }
+
     //const removeTask = (id:number)=> {tasks = tasks.filter((task)=> task.id !==id)}
 
     const removeTask = (id:string)=> { // непонятно. нужно понять
@@ -47,7 +55,9 @@ function App() {
             tasks={tasksForTodolist}
             addTask={addTask}
             removeTask={removeTask}
-            changeFilter={changeFilter} />
+            changeFilter={changeFilter}
+            changeTaskStatus={changeTaskStatus}
+            filter={filter} />
         </div>
     );
 }
