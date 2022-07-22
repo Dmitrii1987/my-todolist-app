@@ -35,26 +35,30 @@ function App() {
     })
 
 
-    const addTask = (todolistId: string,title: string) => {
+    const addTask = (todolistId: string, title: string) => {
         let task = { id: v1(), title: title, isDone: false }
         let todolistTasks = tasks[todolistId]
         tasks[todolistId] = [task, ...todolistTasks]
-        setTasks({...tasks})
+        setTasks({ ...tasks })
         //  или вот так
         // setTasks({ ...tasks, [todolistID]: [newTask, ...tasks[todolistID]] })
     }
 
-    const changeTaskStatus = (id: string, isDone: boolean) => {  // непонятно
-        let task = tasks.find(t => t.id === id)
+    const changeTaskStatus = (todolistId: string, id: string, isDone: boolean) => {
+        //так или вот так
+        //  setTasks({ ...tasks, [todolistID]: tasks[todolistID].map(el => el.id === taskId ? { ...el, isDone: isDone } : el) })
+
+        let todolistTasks = tasks[todolistId]
+        let task = todolistTasks.find(el => el.id === id)
         if (task) {
-            task.isDone = isDone;
-            setTasks([...tasks])
+            task.isDone = isDone
+            setTasks({ ...tasks })
         }
     }
 
-    const removeTask = (todolistId: string, id: string) => { 
-        tasks[todolistId].filter(el=>el.id !== id)
-        setTasks({...tasks})
+    const removeTask = (todolistId: string, id: string) => {
+        tasks[todolistId].filter(el => el.id !== id)
+        setTasks({ ...tasks })
 
         //  или вот так
         //setTasks({...tasks, [todolistId]: tasks[todolistId].filter(el => el.id !== id)})
@@ -87,11 +91,11 @@ function App() {
                             title={todolist.title}
                             tasks={tasksForTodolist}
                             addTask={addTask}
-                            removeTask={ removeTask}
+                            removeTask={removeTask}
                             changeFilter={changeFilter}
                             changeTaskStatus={changeTaskStatus}
                             filter={todolist.filter}
-                             />
+                        />
                     )
                 })
             }
