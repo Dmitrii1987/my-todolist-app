@@ -35,10 +35,13 @@ function App() {
     })
 
 
-    const addTask = (title: string) => {
+    const addTask = (todolistId: string,title: string) => {
         let task = { id: v1(), title: title, isDone: false }
-        let newTasks = [task, ...tasks] // нужно, чтобы объяснили
-        setTasks(newTasks)
+        let todolistTasks = tasks[todolistId]
+        tasks[todolistId] = [task, ...todolistTasks]
+        setTasks({...tasks})
+        //  или вот так
+        // setTasks({ ...tasks, [todolistID]: [newTask, ...tasks[todolistID]] })
     }
 
     const changeTaskStatus = (id: string, isDone: boolean) => {  // непонятно
@@ -84,10 +87,11 @@ function App() {
                             title={todolist.title}
                             tasks={tasksForTodolist}
                             addTask={addTask}
-                            removeTask={removeTask}
+                            removeTask={ removeTask}
                             changeFilter={changeFilter}
                             changeTaskStatus={changeTaskStatus}
-                            filter={todolist.filter} />
+                            filter={todolist.filter}
+                             />
                     )
                 })
             }
