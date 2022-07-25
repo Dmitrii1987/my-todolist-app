@@ -24,6 +24,7 @@ const Todolist = (props: PropsType) => {
 
     
     const addTask = (title:string) => {
+
         props.addTask(title,props.todolistId)
     }
 
