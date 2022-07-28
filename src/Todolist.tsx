@@ -1,4 +1,4 @@
-import React, { ChangeEvent, KeyboardEvent, useState } from "react";
+import React, { ChangeEvent} from "react";
 import AddItemForm from "./AddItemForm";
 import { FilterValuesType } from "./App";
 import EditableSpan from "./EditableSpan";
@@ -13,6 +13,8 @@ type PropsType = {
     removeTodolist:(todolistId: string)=> void
     filter: FilterValuesType
     todolistId: string
+    editTask:(todolistId:string,taskId:string,title:string)=>void
+    editTodolist:(todolistId: string,title:string)=>void
 }
 
 export type TaskType = {
@@ -34,12 +36,20 @@ const Todolist = (props: PropsType) => {
     const onActiveClickHandler = () => props.changeFilter(props.todolistId, 'active')
     const onCompletedClickHandler = () => props.changeFilter(props.todolistId, 'completed')
     const removeTodolistHandler = ()=> props.removeTodolist(props.todolistId)
+
+    const editTodolistHandler = (title:string) => {
+        props.editTodolist(props.todolistId,title)
+    }
+    const editTaskHandler = (taskId:string, title:string)=> {
+        props.editTask(props.todolistId,taskId,title)
+    }
     
 
     return (
         <div>
             <h3>
-                {props.title}---
+                <EditableSpan value={props.title} onChange={editTodolistHandler} />
+                
                 <button onClick={removeTodolistHandler}>x</button>
             </h3>
             <AddItemForm addItem={addTask} />
@@ -56,7 +66,7 @@ const Todolist = (props: PropsType) => {
 
                         <li key={task.id} className={task.isDone ? "is-done" : ""} >
                             <input type="checkbox" checked={task.isDone} onChange={onChangeHandler} />
-                            <EditableSpan value = {task.title} />
+                            <EditableSpan value = {task.title} onChange={(title)=> editTaskHandler(task.id,title)} />
                             <button onClick={onClickHandler} >x</button>
                         </li>
                     )
