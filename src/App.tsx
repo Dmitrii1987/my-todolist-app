@@ -40,21 +40,21 @@ function App() {
         ]
     })
 
-    const editTodolist = (todolistId: string, title: string) => {
-        setTodolists(todolists.map(el => el.id === todolistId ? { ...el, title: title } : el))
-        alert(title)
+    const editTodolist = (todolistId: string, newTitle: string) => {
+        setTodolists(todolists.map(el => el.id === todolistId ? { ...el, title: newTitle } : el))
     }
-    const editTask = (todolistId:string,taskId:string,title:string)=> {
-        setTasks({...tasks,[todolistId]:tasks[todolistId].map(el => el.id === taskId ? {...el,title:title} : el) })
-        alert(title)
+    const editTask = (todolistId:string,taskId:string,newTitle:string)=> {
+        setTasks({...tasks,[todolistId]:tasks[todolistId].map(el => el.id === taskId ? {...el,title:newTitle} : el) })
     }
 
 
     const addTask = (todolistId: string, title: string) => {
-        let task = { id: v1(), title: title, isDone: false }
-        let todolistTasks = tasks[todolistId]
-        tasks[todolistId] = [task, ...todolistTasks]
-        setTasks({ ...tasks })
+        let newTask = { id: v1(), title: title, isDone: false };
+        setTasks({ ...tasks, [todolistId]: [newTask, ...tasks[todolistId]] })
+        // let task = { id: v1(), title: title, isDone: false }
+        // let todolistTasks = tasks[todolistId]
+        // tasks[todolistId] = [task, ...todolistTasks]
+        // setTasks({ ...tasks })
         //  или вот так
         // setTasks({ ...tasks, [todolistID]: [newTask, ...tasks[todolistID]] })
     }
@@ -100,9 +100,9 @@ function App() {
     }
 
 
-    const addTodolist = (title: string) => {
+    const addTodolist = (newTitle: string) => {
         let newTodolistId = v1()
-        let newTodolist: TodolistsType = { id: newTodolistId, title: title, filter: 'all' }
+        let newTodolist: TodolistsType = { id: newTodolistId, title: newTitle, filter: 'all' }
         setTodolists([newTodolist, ...todolists])
         setTasks({ ...tasks, [newTodolistId]: [] })
     }

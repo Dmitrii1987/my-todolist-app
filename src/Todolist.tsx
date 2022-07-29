@@ -13,8 +13,8 @@ type PropsType = {
     removeTodolist:(todolistId: string)=> void
     filter: FilterValuesType
     todolistId: string
-    editTask:(todolistId:string,taskId:string,title:string)=>void
-    editTodolist:(todolistId: string,title:string)=>void
+    editTask:(todolistId:string,taskId:string,newTitle:string)=>void
+    editTodolist:(todolistId: string,newTitle:string)=>void
 }
 
 export type TaskType = {
@@ -43,16 +43,21 @@ const Todolist = (props: PropsType) => {
     const editTaskHandler = (taskId:string, title:string)=> {
         props.editTask(props.todolistId,taskId,title)
     }
+    const addTaskHandler = (newTitle: string) => {
+        props.addTask(props.todolistId, newTitle)  // id всегда на первом месте!!!!!!!
+    }
     
 
     return (
         <div>
             <h3>
-                <EditableSpan value={props.title} onChange={editTodolistHandler} />
+                <EditableSpan title={props.title} onChange={editTodolistHandler} />
                 
                 <button onClick={removeTodolistHandler}>x</button>
             </h3>
-            <AddItemForm addItem={addTask} />
+            <div>
+            <AddItemForm addItem={addTaskHandler} />
+            </div>
             <ul>
                 {props.tasks.map((task) => { // спросить про эту запись!!!!
 
@@ -66,7 +71,7 @@ const Todolist = (props: PropsType) => {
 
                         <li key={task.id} className={task.isDone ? "is-done" : ""} >
                             <input type="checkbox" checked={task.isDone} onChange={onChangeHandler} />
-                            <EditableSpan value = {task.title} onChange={(title)=> editTaskHandler(task.id,title)} />
+                            <EditableSpan title = {task.title} onChange={(title)=> editTaskHandler(task.id,title)} />
                             <button onClick={onClickHandler} >x</button>
                         </li>
                     )
