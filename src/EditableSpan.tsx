@@ -17,11 +17,11 @@ const EditableSpan = (props: EditableSpanType) => {
     }
 
     const activateEditMode = () => {
-        setEditMode(!editMode)
+        setEditMode(true)
         setNewTitle(props.title)
     }
     const activateViewMode = ()=> {
-        setEditMode(editMode)
+        setEditMode(false)
         addTask()
     }
     const onChangeHandler = (e:ChangeEvent<HTMLInputElement>)=> {
