@@ -1,10 +1,12 @@
+import {IconButton, AddBox } from '@mui/icons-material';
+import {TextField } from '@mui/material';
 import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 
 type AddItemFormPropsType = {
-    addItem:(title:string)=>void
+    addItem: (title: string) => void
 }
 
-const AddItemForm = (props:AddItemFormPropsType) => {
+const AddItemForm = (props: AddItemFormPropsType) => {
 
 
     let [title, setTitle] = useState("")
@@ -30,13 +32,17 @@ const AddItemForm = (props:AddItemFormPropsType) => {
 
     return (
         <div>
-            <input
+            <TextField
+                variant='outlined'
                 value={title}
                 onChange={onChangeHandler}
                 onKeyDown={onKeyDownHandler}
-                className={error ? "error" : ""} />
-            <button onClick={addItem}>+</button>
-            {error && <div className="error-message">{error}</div>}
+                error={!error}
+                label='Title'
+                helperText={error} />
+            <IconButton onClick={addItem} variant="contained" color="success">
+                <AddBox />
+            </IconButton>
         </div>
     );
 };
