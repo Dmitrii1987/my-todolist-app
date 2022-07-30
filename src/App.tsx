@@ -1,3 +1,4 @@
+import { AppBar, Button, IconButton, Menu, Toolbar, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { v1 } from 'uuid';
 import AddItemForm from './AddItemForm';
@@ -43,8 +44,8 @@ function App() {
     const editTodolist = (todolistId: string, newTitle: string) => {
         setTodolists(todolists.map(el => el.id === todolistId ? { ...el, title: newTitle } : el))
     }
-    const editTask = (todolistId:string,taskId:string,newTitle:string)=> {
-        setTasks({...tasks,[todolistId]:tasks[todolistId].map(el => el.id === taskId ? {...el,title:newTitle} : el) })
+    const editTask = (todolistId: string, taskId: string, newTitle: string) => {
+        setTasks({ ...tasks, [todolistId]: tasks[todolistId].map(el => el.id === taskId ? { ...el, title: newTitle } : el) })
     }
 
 
@@ -109,6 +110,17 @@ function App() {
 
     return (
         <div className="App">
+            <AppBar position='static'>
+                <Toolbar>
+                    <IconButton edge='start' color='inherit'>
+                        <Menu open />
+                    </IconButton>
+                    <Typography variant='h6' >
+                        Todolist
+                    </Typography>
+                    <Button color='inherit' >Login</Button>
+                </Toolbar>
+            </AppBar>
             <AddItemForm addItem={addTodolist} />
             {
                 todolists.map((el) => {

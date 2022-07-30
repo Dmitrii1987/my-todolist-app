@@ -37,10 +37,12 @@ const AddItemForm = (props: AddItemFormPropsType) => {
                 value={title}
                 onChange={onChangeHandler}
                 onKeyDown={onKeyDownHandler}
-                error={!error}
+                error={!!error}
                 label='Title'
                 helperText={error} />
-            <IconButton onClick={addItem} variant="contained" color="success">
+            <IconButton
+              onClick={addItem} 
+               color="success">
                 <AddBox />
             </IconButton>
         </div>

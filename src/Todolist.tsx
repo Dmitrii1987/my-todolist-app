@@ -28,10 +28,10 @@ export type TaskType = {
 const Todolist = (props: PropsType) => {
 
     
-    const addTask = (title:string) => {
+    // const addTask = (title:string) => {
 
-        props.addTask(props.todolistId,title)
-    }
+    //     props.addTask(props.todolistId,title)
+    // }
 
 
     const onAllClickHandler = () => props.changeFilter(props.todolistId, 'all')  // {} не обязательно?
@@ -59,7 +59,7 @@ const Todolist = (props: PropsType) => {
             <div>
             <AddItemForm addItem={addTaskHandler} />
             </div>
-            <ul>
+            <div>
                 {props.tasks.map((task) => { // спросить про эту запись!!!!
 
                     const onClickHandler = () => props.removeTask(props.todolistId, task.id)
@@ -70,14 +70,14 @@ const Todolist = (props: PropsType) => {
 
                     return (
 
-                        <li key={task.id} className={task.isDone ? "is-done" : ""} >
+                        <div key={task.id} className={task.isDone ? "is-done" : ""} >
                             <Checkbox color="primary" checked={task.isDone} onChange={onChangeHandler} />
                             <EditableSpan title = {task.title} onChange={(title)=> editTaskHandler(task.id,title)} />
                             <IconButton onClick={onClickHandler} > <Delete fontSize="small" /> </IconButton>
-                        </li>
+                        </div>
                     )
                 })}
-            </ul>
+            </div>
             <div>
                 <Button variant={props.filter === "all" ? "contained" : "text"}
                     onClick={onAllClickHandler} color='inherit'  >All</Button>
