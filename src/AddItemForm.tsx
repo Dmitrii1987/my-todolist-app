@@ -34,6 +34,7 @@ const AddItemForm = (props: AddItemFormPropsType) => {
         <div>
             <TextField
                 variant='outlined'
+                size="small"
                 value={title}
                 onChange={onChangeHandler}
                 onKeyDown={onKeyDownHandler}

@@ -1,6 +1,6 @@
-import {Delete } from "@mui/icons-material";
+import { Delete } from "@mui/icons-material";
 import { Button, Checkbox, IconButton } from "@mui/material";
-import React, { ChangeEvent} from "react";
+import React, { ChangeEvent } from "react";
 import AddItemForm from "./AddItemForm";
 import { FilterValuesType } from "./App";
 import EditableSpan from "./EditableSpan";
@@ -12,11 +12,11 @@ type PropsType = {
     changeFilter: (todolistId: string, value: FilterValuesType) => void
     addTask: (todolistId: string, title: string) => void
     changeTaskStatus: (todolistId: string, id: string, isDone: boolean) => void
-    removeTodolist:(todolistId: string)=> void
+    removeTodolist: (todolistId: string) => void
     filter: FilterValuesType
     todolistId: string
-    editTask:(todolistId:string,taskId:string,newTitle:string)=>void
-    editTodolist:(todolistId: string,newTitle:string)=>void
+    editTask: (todolistId: string, taskId: string, newTitle: string) => void
+    editTodolist: (todolistId: string, newTitle: string) => void
 }
 
 export type TaskType = {
@@ -27,7 +27,7 @@ export type TaskType = {
 
 const Todolist = (props: PropsType) => {
 
-    
+
     // const addTask = (title:string) => {
 
     //     props.addTask(props.todolistId,title)
@@ -37,18 +37,18 @@ const Todolist = (props: PropsType) => {
     const onAllClickHandler = () => props.changeFilter(props.todolistId, 'all')  // {} не обязательно?
     const onActiveClickHandler = () => props.changeFilter(props.todolistId, 'active')
     const onCompletedClickHandler = () => props.changeFilter(props.todolistId, 'completed')
-    const removeTodolistHandler = ()=> props.removeTodolist(props.todolistId)
+    const removeTodolistHandler = () => props.removeTodolist(props.todolistId)
 
-    const editTodolistHandler = (title:string) => {
-        props.editTodolist(props.todolistId,title)
+    const editTodolistHandler = (title: string) => {
+        props.editTodolist(props.todolistId, title)
     }
-    const editTaskHandler = (taskId:string, title:string)=> {
-        props.editTask(props.todolistId,taskId,title)
+    const editTaskHandler = (taskId: string, title: string) => {
+        props.editTask(props.todolistId, taskId, title)
     }
     const addTaskHandler = (newTitle: string) => {
         props.addTask(props.todolistId, newTitle)  // id всегда на первом месте!!!!!!!
     }
-    
+
 
     return (
         <div>
@@ -57,7 +57,7 @@ const Todolist = (props: PropsType) => {
                 <IconButton onClick={removeTodolistHandler} > <Delete fontSize="inherit" /> </IconButton>
             </h3>
             <div>
-            <AddItemForm addItem={addTaskHandler} />
+                <AddItemForm addItem={addTaskHandler} />
             </div>
             <div>
                 {props.tasks.map((task) => { // спросить про эту запись!!!!
@@ -67,24 +67,44 @@ const Todolist = (props: PropsType) => {
                         let newIsDoneValue = e.currentTarget.checked
                         props.changeTaskStatus(props.todolistId, task.id, newIsDoneValue) // непонятно ничего )
                     }
-
                     return (
-
                         <div key={task.id} className={task.isDone ? "is-done" : ""} >
-                            <Checkbox color="primary" checked={task.isDone} onChange={onChangeHandler} />
-                            <EditableSpan title = {task.title} onChange={(title)=> editTaskHandler(task.id,title)} />
-                            <IconButton onClick={onClickHandler} > <Delete fontSize="small" /> </IconButton>
+                            <Checkbox
+                                onChange={onChangeHandler}
+                                color="primary"
+                                checked={task.isDone}
+                            />
+                            <EditableSpan
+                                title={task.title}
+                                onChange={(title) => editTaskHandler(task.id, title)}
+                            />
+                            <IconButton
+                                onClick={onClickHandler}>
+                                <Delete fontSize="small" />
+                            </IconButton>
                         </div>
                     )
                 })}
             </div>
             <div>
-                <Button variant={props.filter === "all" ? "contained" : "text"}
-                    onClick={onAllClickHandler} color='inherit'  >All</Button>
-                <Button variant={props.filter === "active" ? "contained" : "text"}
-                    onClick={onActiveClickHandler} color='info'  >Active</Button>
-                <Button variant={props.filter === "completed" ? "contained" : "text"} 
-                 onClick={onCompletedClickHandler} color='secondary' >Completed</Button>
+                <Button
+                    onClick={onAllClickHandler}
+                    variant={props.filter === "all" ? "contained" : "text"}
+                    color='inherit'  >
+                    All
+                </Button>
+                <Button
+                    onClick={onActiveClickHandler}
+                    variant={props.filter === "active" ? "contained" : "text"}
+                    color='info'  >
+                    Active
+                </Button>
+                <Button
+                    onClick={onCompletedClickHandler}
+                    variant={props.filter === "completed" ? "contained" : "text"}
+                    color='secondary' >
+                    Completed
+                </Button>
             </div>
         </div>
     )
