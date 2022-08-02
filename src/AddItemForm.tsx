@@ -1,5 +1,5 @@
 import { AddBox } from '@mui/icons-material';
-import {IconButton,TextField } from '@mui/material';
+import { IconButton, TextField } from '@mui/material';
 import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 
 type AddItemFormPropsType = {
@@ -42,8 +42,8 @@ const AddItemForm = (props: AddItemFormPropsType) => {
                 label='Title'
                 helperText={error} />
             <IconButton
-              onClick={addItem} 
-               color="success">
+                onClick={addItem}
+                color="success">
                 <AddBox />
             </IconButton>
         </div>

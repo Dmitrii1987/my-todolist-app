@@ -1,7 +1,8 @@
-import { AppBar, Button, Container, Grid, IconButton, Menu, Paper, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, Container, Grid, IconButton, Menu, Paper, Toolbar, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { v1 } from 'uuid';
 import AddItemForm from './AddItemForm';
+import MenuIcon from '@mui/icons-material/Menu';
 import './App.css';
 import Todolist, { TaskType } from './Todolist';
 
@@ -110,19 +111,26 @@ function App() {
 
     return (
         <div className="App">
-            <AppBar position='static'>
-                <Toolbar>
-                    <IconButton edge='start' color='inherit'>
-                        <Menu open={false} />
-                    </IconButton>
-                    <Typography variant='h6' >
-                        Todolist
-                    </Typography>
-                    <Button color='inherit' >Login</Button>
-                </Toolbar>
-            </AppBar>
+            <Box sx={{ flexGrow: 1 }}>
+                <AppBar position="static">
+                    <Toolbar>
+                        <IconButton
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            sx={{ mr: 2 }}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                            Todolist
+                        </Typography>
+                        <Button color="inherit">Login</Button>
+                    </Toolbar>
+                </AppBar>
+            </Box>
             <Container fixed>
-                <Grid container style={{padding: '20px'}}>
+                <Grid container style={{ padding: '20px' }}>
                     <AddItemForm addItem={addTodolist} />
                 </Grid>
                 <Grid container spacing={3} >
@@ -136,7 +144,7 @@ function App() {
                                 tasksForTodolist = tasks[el.id].filter(task => task.isDone === true)
                             }
                             return <Grid item>
-                                <Paper style={{padding: '10px'}} >
+                                <Paper style={{ padding: '10px' }} >
                                     <Todolist
                                         key={el.id}
                                         todolistId={el.id}
