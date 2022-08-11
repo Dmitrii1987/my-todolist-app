@@ -1,6 +1,6 @@
 import { userReducer } from './userReducer';
 
-test('user reducer should increment only age', () => {
+test.skip('user reducer should increment only age', () => {
     const startState = {
         age: 20,
         childrenCount: 2,
@@ -13,7 +13,7 @@ test('user reducer should increment only age', () => {
 })
 
 
-test('user reducer should increment only childrenCount', () => {
+test.skip('user reducer should increment only childrenCount', () => {
     const startState = {
         age: 20,
         childrenCount: 2,
@@ -24,7 +24,7 @@ test('user reducer should increment only childrenCount', () => {
     expect(endState.childrenCount).toBe(3)
 })
 
-test('user reducer should change name of user', () => {
+test.skip('user reducer should change name of user', () => {
     const startState = {
         name: 'Dimych',
         age: 20,
@@ -33,6 +33,7 @@ test('user reducer should change name of user', () => {
     const newName = 'Viktor'
     const endState = userReducer(startState, { type: 'CHANGE-NAME', newName: newName })
 
+    
     expect(endState.name).toBe(newName)
 })
 
