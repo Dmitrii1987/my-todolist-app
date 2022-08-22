@@ -1,6 +1,7 @@
 import { title } from 'process';
 import { v1 } from "uuid"
 import { FilterValuesType, TasksStateType, TodolistsType } from "../App"
+import { AddTodolistACType } from './todolists-reducer';
 
 
 
@@ -38,6 +39,12 @@ export const tasksReducer = (state: TasksStateType, action: ActionsType):TasksSt
                     :task)
             }
         }
+        case 'ADD-TODOLIST': {
+            return {
+                ...state,
+                [action.todolistId]: []
+            }
+        }
         
         default:
             return state
@@ -46,7 +53,7 @@ export const tasksReducer = (state: TasksStateType, action: ActionsType):TasksSt
 
 
 type ActionsType = RemoveTaskACType | AddTaskACType 
-| ChangeTaskStatusACType | ChangeTaskTitleACType
+| ChangeTaskStatusACType | ChangeTaskTitleACType | AddTodolistACType
 
 type RemoveTaskACType = ReturnType<typeof removeTaskAC>
 type AddTaskACType = ReturnType<typeof addTaskAC>
