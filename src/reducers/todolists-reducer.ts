@@ -28,7 +28,7 @@ export const todolistsReducer = (state: Array<TodolistsType>, action: ActionsTyp
 type ActionsType = RemoveTodolistACType | AddTodolistACType 
 | ChangeTodolistTitleACType | ChangeTodolistFilterACType
 
-type RemoveTodolistACType = ReturnType<typeof removeTodolistAC>
+export type RemoveTodolistACType = ReturnType<typeof removeTodolistAC>
 export type AddTodolistACType = {type:'ADD-TODOLIST',newTodolistTitle:string,todolistId:string}
 type ChangeTodolistTitleACType = ReturnType<typeof changeTodolistTitleAC>
 type ChangeTodolistFilterACType = ReturnType<typeof changeTodolistFilterAC>
@@ -42,7 +42,9 @@ export const removeTodolistAC = (todolistId1: string) => {
 
 export const addTodolistAC=(newTodolistTitle:string)=>{
     return {
-        type: 'ADD-TODOLIST',newTodolistTitle,todolistId:v1()
+        type: 'ADD-TODOLIST',newTodolistTitle,todolistId:v1() // этот todolistId:v1() сгенерируется
+        //при добавлении тудулиста, а значит и пустого массива тасок для него
+        // и при добавлении тасок
     } as const
 }
 

@@ -1,7 +1,7 @@
 import { title } from 'process';
 import { v1 } from "uuid"
 import { FilterValuesType, TasksStateType, TodolistsType } from "../App"
-import { AddTodolistACType } from './todolists-reducer';
+import { AddTodolistACType, RemoveTodolistACType } from './todolists-reducer';
 
 
 
@@ -45,6 +45,11 @@ export const tasksReducer = (state: TasksStateType, action: ActionsType):TasksSt
                 [action.todolistId]: []
             }
         }
+        case 'REMOVE-TODOLIST': {
+            let copyState = {...state}
+            delete copyState[action.payload.todolistId1]
+            return copyState
+        }
         
         default:
             return state
@@ -52,8 +57,9 @@ export const tasksReducer = (state: TasksStateType, action: ActionsType):TasksSt
 }
 
 
-type ActionsType = RemoveTaskACType | AddTaskACType 
-| ChangeTaskStatusACType | ChangeTaskTitleACType | AddTodolistACType
+type ActionsType = RemoveTaskACType | AddTaskACType | ChangeTaskStatusACType 
+| ChangeTaskTitleACType | AddTodolistACType | RemoveTodolistACType
+
 
 type RemoveTaskACType = ReturnType<typeof removeTaskAC>
 type AddTaskACType = ReturnType<typeof addTaskAC>
