@@ -13,28 +13,28 @@ export type TodolistsType = {
     filter: FilterValuesType
 }
 
-type TasksStateType = {
+export type TasksStateType = {
     [key: string]: Array<TaskType>
 }
 
 function App() {
 
-    let todolistID1 = v1()
-    let todolistID2 = v1()
+    let todolistId1 = v1()
+    let todolistId2 = v1()
 
     let [todolists, setTodolists] = useState<Array<TodolistsType>>([
-        { id: todolistID1, title: 'What to learn', filter: 'all' },
-        { id: todolistID2, title: 'What to buy', filter: 'all' },
+        { id: todolistId1, title: 'What to learn', filter: 'all' },
+        { id: todolistId2, title: 'What to buy', filter: 'all' },
     ])
 
     let [tasks, setTasks] = useState<TasksStateType>({
-        [todolistID1]: [
+        [todolistId1]: [
             { id: v1(), title: 'HTML&CSS', isDone: true },
             { id: v1(), title: 'JS', isDone: true },
             { id: v1(), title: 'ReactJS', isDone: false },
 
         ],
-        [todolistID2]: [
+        [todolistId2]: [
             { id: v1(), title: 'Rest API', isDone: true },
             { id: v1(), title: 'GraphQL', isDone: false },
         ]
