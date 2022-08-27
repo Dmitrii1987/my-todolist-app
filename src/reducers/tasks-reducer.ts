@@ -66,13 +66,13 @@ type AddTaskACType = ReturnType<typeof addTaskAC>
 type ChangeTaskStatusACType = ReturnType<typeof changeTaskStatusAC>
 type ChangeTaskTitleACType = ReturnType<typeof changeTaskTitleAC>
 
-export const removeTaskAC = (taskId:string,todolistId: string) => {
+export const removeTaskAC = (todolistId: string,taskId:string) => {
     return {
         type: 'REMOVE-TASK',taskId,todolistId
     } as const
 }
 
-export const addTaskAC=(title:string,todolistId:string)=>{
+export const addTaskAC=(todolistId:string,title:string)=>{
     return {
         type: 'ADD-TASK',title,todolistId
     } as const

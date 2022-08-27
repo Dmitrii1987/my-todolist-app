@@ -42,7 +42,7 @@ export const removeTodolistAC = (todolistId1: string) => {
 
 export const addTodolistAC=(newTodolistTitle:string)=>{
     return {
-        type: 'ADD-TODOLIST',newTodolistTitle,todolistId:v1() // этот todolistId:v1() сгенерируется
+        type: 'ADD-TODOLIST',todolistId:v1(),newTodolistTitle // этот todolistId:v1() сгенерируется
         //при добавлении тудулиста, а значит и пустого массива тасок для него
         // и при добавлении тасок
     } as const
