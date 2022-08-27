@@ -78,13 +78,13 @@ export const addTaskAC=(title:string,todolistId:string)=>{
     } as const
 }
 
-export const changeTaskStatusAC=(taskId:string,isDone:boolean, todolistId:string)=>{
+export const changeTaskStatusAC=(todolistId:string,taskId:string,isDone:boolean )=>{
     return {
-        type: 'CHANGE-TASK-STATUS',taskId,isDone,todolistId
+        type: 'CHANGE-TASK-STATUS',todolistId,taskId,isDone
     } as const
 }
 
-export const changeTaskTitleAC=(taskId:string,title:string,todolistId:string)=>{
+export const changeTaskTitleAC=(todolistId:string,taskId:string,title:string,)=>{
     return {
         type:'CHANGE-TASK-TITLE',taskId,title,todolistId
     } as const
