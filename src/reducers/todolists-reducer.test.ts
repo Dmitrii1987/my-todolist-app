@@ -28,9 +28,7 @@ test('correct todolist should be removed', () => {
 
 test('correct todolist should be added', () => {
 
-
     let newTodolistTitle = 'New Todolist'
-
 
     //const endState = todolistsReducer(startState, {type: 'ADD-TODOLIST', title: newTodolistTitle})
     const endState = todolistsReducer(startState, addTodolistAC(newTodolistTitle))
@@ -43,13 +41,11 @@ test('correct todolist should change its name', () => {
 
     let newTodolistTitle = 'New Todolist'
 
-
-
-    const action = {
-        type: 'CHANGE-TODOLIST-TITLE',
-        id: todolistId2,
-        title: newTodolistTitle,
-    }
+    // const action = {
+    //     type: 'CHANGE-TODOLIST-TITLE',
+    //     id: todolistId2,
+    //     title: newTodolistTitle,
+    // }
 
     //const endState = todolistsReducer(startState, action)
     const endState = todolistsReducer(startState, changeTodolistTitleAC(todolistId2, newTodolistTitle))
@@ -64,11 +60,11 @@ test('correct filter of todolist should be changed', () => {
 
 
 
-    const action = {
-        type: 'CHANGE-TODOLIST-FILTER',
-        id: todolistId2,
-        filter: newFilter
-    }
+    // const action = {
+    //     type: 'CHANGE-TODOLIST-FILTER',
+    //     id: todolistId2,
+    //     filter: newFilter
+    // }
 
     //const endState = todolistsReducer(startState, action)
     const endState = todolistsReducer(startState, changeTodolistFilterAC(todolistId2, newFilter))
