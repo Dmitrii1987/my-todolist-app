@@ -7,6 +7,7 @@ type AddItemFormPropsType = {
 }
 
 const AddItemForm = (props: AddItemFormPropsType) => {
+console.log('AddItemForm');
 
 
     let [title, setTitle] = useState("")
