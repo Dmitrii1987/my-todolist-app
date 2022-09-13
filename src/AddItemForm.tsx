@@ -7,7 +7,7 @@ type AddItemFormPropsType = {
 }
 
 const AddItemForm = (props: AddItemFormPropsType) => {
-console.log('AddItemForm');
+    console.log('AddItemForm');
 
 
     let [title, setTitle] = useState("")
@@ -25,7 +25,7 @@ console.log('AddItemForm');
     const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => setTitle(event.currentTarget.value)
 
     const onKeyDownHandler = (event: KeyboardEvent<HTMLInputElement>) => {
-        setError(null)
+        if(error) setError(null)
         if (event.key === 'Enter') {
             addItem()
         }
